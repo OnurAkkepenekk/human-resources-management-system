@@ -22,5 +22,4 @@ public class Job {
 
 	@Column(name = "job_title")
 	private String job_title;	
-
 }
