@@ -3,31 +3,24 @@ package kodlamaio.hrms.entities.concretes;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@NoArgsConstructor
 @Table(name = "job_positions")
 public class Job {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
 
 	@Column(name = "job_title")
-	private String job_title;
-
-	public Job() {
-		super();
-	}
-
-	public Job(int id, String job_title) {
-		super();
-		this.id = id;
-		this.job_title = job_title;
-	}
+	private String job_title;	
 
 }
