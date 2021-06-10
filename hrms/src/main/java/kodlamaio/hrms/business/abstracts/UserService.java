@@ -3,8 +3,8 @@ package kodlamaio.hrms.business.abstracts;
 import java.util.List;
 
 import kodlamaio.hrms.core.utilities.results.DataResult;
-import kodlamaio.hrms.entities.concretes.Job;
+import kodlamaio.hrms.entities.abstracts.User;
 
-public interface JobService {
-	DataResult<List<Job>> getAll();
+public interface UserService {
+	DataResult<List<User>> getAll();
 }
