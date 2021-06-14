@@ -13,6 +13,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,12 +23,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "job_advertisements")
-@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "JobAdvertisement" })
+
 public class JobAdvertisement {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
+	@ApiModelProperty(hidden = true)
 	private int id;
 
 	@Column(name = "job_description", nullable = false)
@@ -46,6 +48,7 @@ public class JobAdvertisement {
 	private Date lastApplyDate;
 
 	@Column(name = "create_date", nullable = false)
+	@ApiModelProperty(hidden = true)
 	private Date publishDate;
 
 	@Column(name = "is_active", nullable = false)
