@@ -2,6 +2,7 @@ package kodlamaio.hrms.business.concretes;
 
 import java.util.List;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.JobAdvertisementService;
@@ -31,6 +32,11 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 	@Override
 	public DataResult<List<JobAdvertisement>> getAll() {
 		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertDao.findAll(),"Listed job advertisement ");
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisement>> findByIsActiveTrueOrderByCreateDate() {
+		 return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertDao.findByIsActiveTrueOrderByPublishDate());
 	}
 
 }

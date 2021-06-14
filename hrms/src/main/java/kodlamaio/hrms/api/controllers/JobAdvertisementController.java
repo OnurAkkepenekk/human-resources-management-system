@@ -34,5 +34,10 @@ public class JobAdvertisementController {
 	public DataResult<List<JobAdvertisement>> getAll(){		
 		return this.advertisementService.getAll();
 	}
+	
+	@GetMapping("/findByIsActiveTrueOrderByPublishDate")
+	public DataResult<List<JobAdvertisement>> findByIsActiveTrueOrderByPublishDate(){		
+		return this.advertisementService.findByIsActiveTrueOrderByCreateDate();
+	}
 
 }

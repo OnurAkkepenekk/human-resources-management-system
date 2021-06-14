@@ -11,4 +11,6 @@ public interface JobAdvertisementService {
 	Result add(JobAdvertisement jobAdvert);
 
 	DataResult<List<JobAdvertisement>> getAll();
+
+	DataResult<List<JobAdvertisement>> findByIsActiveTrueOrderByCreateDate();
 }
