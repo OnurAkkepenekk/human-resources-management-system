@@ -31,12 +31,18 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 
 	@Override
 	public DataResult<List<JobAdvertisement>> getAll() {
-		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertDao.findAll(),"Listed job advertisement ");
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertDao.findAll(), "Listed job advertisement ");
 	}
 
 	@Override
 	public DataResult<List<JobAdvertisement>> findByIsActiveTrueOrderByCreateDate() {
-		 return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertDao.findByIsActiveTrueOrderByPublishDate());
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertDao.findByIsActiveTrueOrderByPublishDate());
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisement>> finfByIsActiveTrueAndEmployer_Id(int employerId) {
+		return new SuccessDataResult<List<JobAdvertisement>>(
+				this.jobAdvertDao.findByIsActiveTrueAndEmployer_Id(employerId),"Listed job advertisement for employerId");
 	}
 
 }

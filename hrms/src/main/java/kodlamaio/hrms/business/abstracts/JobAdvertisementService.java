@@ -13,4 +13,6 @@ public interface JobAdvertisementService {
 	DataResult<List<JobAdvertisement>> getAll();
 
 	DataResult<List<JobAdvertisement>> findByIsActiveTrueOrderByCreateDate();
+	
+	DataResult<List<JobAdvertisement>>finfByIsActiveTrueAndEmployer_Id(int employerId);
 }

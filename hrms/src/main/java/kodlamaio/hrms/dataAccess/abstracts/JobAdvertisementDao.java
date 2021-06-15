@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 
 public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement, Integer> {
-	
+
 	List<JobAdvertisement> findByIsActiveTrueOrderByPublishDate();
+
+	List<JobAdvertisement> findByIsActiveTrueAndEmployer_Id(int employerId);
 }
