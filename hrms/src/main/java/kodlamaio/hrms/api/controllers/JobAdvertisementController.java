@@ -45,4 +45,9 @@ public class JobAdvertisementController {
 		return this.advertisementService.finfByIsActiveTrueAndEmployer_Id(employer_Id);
 	}
 
+	@GetMapping("/changeStatus")
+	public DataResult<JobAdvertisement> changeStatus(int advertisementId, int employer_Id) {
+		return this.advertisementService.findByIdAndEmployer_Id(advertisementId, employer_Id);
+	}
+
 }
