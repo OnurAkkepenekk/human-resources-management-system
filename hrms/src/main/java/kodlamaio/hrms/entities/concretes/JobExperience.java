@@ -22,30 +22,30 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@Table(name = "education_informations")
+@Table(name = "job_experiences")
 @AllArgsConstructor
 @NoArgsConstructor
-public class EducationInformation {
+public class JobExperience {
+
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
+	@Column(name="company_name")
+	private String companyName;
+
+	@Column(name="workplace_name")
+	private String workplaceName;
+
 	@Column(name = "start_date")
-	private Date startDate;
+	private Date startDateOfWork;
 
 	@Nullable
-	@Column(name = "graduate_date")
-	private Date graduateDate;
-	
-	@ManyToOne()
-	@JoinColumn(name = "university_id")
-	private University university;
-	
-	@ManyToOne
-	@JoinColumn(name = "department_id")
-	private UniversityDepartment universityDepartment;
-	
+	@Column(name = "quit_date")
+	private String endDateOfWork;
+
+
 	@JsonProperty(access = Access.WRITE_ONLY)
 	@ManyToOne()
 	@JoinColumn(name = "cv_id")
