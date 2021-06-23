@@ -33,5 +33,8 @@ public class CV {
 	@ManyToOne()
 	@JoinColumn(name = "candidate_id")
 	private Candidate candidate;
+	
+	@OneToMany(mappedBy = "cv")
+	private List<JobExperience> jobExperiences;
 
 }
