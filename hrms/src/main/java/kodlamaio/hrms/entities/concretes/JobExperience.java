@@ -32,19 +32,18 @@ public class JobExperience {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name="company_name")
-	private String companyName;
+	@Column(name = "workplace_name")
+	private String workPlaceName;
 
-	@Column(name="workplace_name")
-	private String workplaceName;
+	@Column(name = "job_position")
+	private String jobPosition;
 
 	@Column(name = "start_date")
-	private Date startDateOfWork;
+	private Date startDate;
 
 	@Nullable
 	@Column(name = "quit_date")
-	private String endDateOfWork;
-
+	private String quitDate;
 
 	@JsonProperty(access = Access.WRITE_ONLY)
 	@ManyToOne()
