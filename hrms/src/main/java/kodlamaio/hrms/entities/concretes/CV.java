@@ -37,4 +37,6 @@ public class CV {
 	@OneToMany(mappedBy = "cv")
 	private List<JobExperience> jobExperiences;
 
+	@OneToMany(mappedBy = "cv")
+	private List<ForeignLanguage> foreignLanguages;
 }
