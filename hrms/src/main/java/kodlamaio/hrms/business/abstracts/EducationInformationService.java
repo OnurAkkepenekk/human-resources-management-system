@@ -9,5 +9,6 @@ import kodlamaio.hrms.entities.dtos.EducationInformationDto;
 
 public interface EducationInformationService {
 	Result add(EducationInformation educationInformation);
+
 	public DataResult<List<EducationInformationDto>> getEducationInformationsByUserId(int candidateId);
 }
