@@ -39,4 +39,7 @@ public class CV {
 
 	@OneToMany(mappedBy = "cv")
 	private List<ForeignLanguage> foreignLanguages;
+	
+	@OneToMany(mappedBy = "cv")
+	private List<Image> image;
 }
