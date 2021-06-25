@@ -42,4 +42,7 @@ public class CV {
 	
 	@OneToMany(mappedBy = "cv")
 	private List<Image> image;
+	
+	@OneToMany(mappedBy = "cv")
+	private List<Link> link;
 }
