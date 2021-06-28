@@ -33,16 +33,19 @@ public class CV {
 	@ManyToOne()
 	@JoinColumn(name = "candidate_id")
 	private Candidate candidate;
-	
+
 	@OneToMany(mappedBy = "cv")
 	private List<JobExperience> jobExperiences;
 
 	@OneToMany(mappedBy = "cv")
 	private List<ForeignLanguage> foreignLanguages;
-	
+
 	@OneToMany(mappedBy = "cv")
 	private List<Image> image;
-	
+
 	@OneToMany(mappedBy = "cv")
 	private List<Link> link;
+	
+	@OneToMany(mappedBy = "cv")
+	private List<SkillForCV> skillForCV;
 }
