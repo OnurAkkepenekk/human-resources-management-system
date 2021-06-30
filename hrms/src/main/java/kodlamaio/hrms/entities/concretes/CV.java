@@ -48,4 +48,7 @@ public class CV {
 	
 	@OneToMany(mappedBy = "cv")
 	private List<SkillForCV> skillForCV;
+	
+	@OneToMany(mappedBy = "cv")
+	private List<CoverLetter> coverLetters;
 }
