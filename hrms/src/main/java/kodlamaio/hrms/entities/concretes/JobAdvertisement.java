@@ -11,7 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -64,6 +63,14 @@ public class JobAdvertisement {
 	@ManyToOne()
 	@JoinColumn(name = "employer_id")
 	private Employer employer;
+
+	@ManyToOne
+	@JoinColumn(name = "work_time_type_id")
+	private WorkTimeType workTimeType;
+
+	@ManyToOne
+	@JoinColumn(name = "work_type_id")
+	private WorkType workType;
 
 	public JobAdvertisement(String jobDescription, Double minSalary, Double maxSalary, int openPositionCount,
 			Date lastApplyDate, Date createDate, boolean isActive) {
