@@ -24,7 +24,6 @@ public class ForeignLanguage {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@ApiModelProperty(hidden = true)
 	private int id;
 
 	@Column(name = "language_name")

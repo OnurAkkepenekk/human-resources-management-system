@@ -23,7 +23,6 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	@ApiModelProperty(hidden = true)
 	private int id;
 
 	@Column(name = "email")

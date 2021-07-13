@@ -25,11 +25,10 @@ public class City {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@ApiModelProperty(hidden = true)
 	private int id;
 
 	@Column(name = "city_name", nullable = false)
-	private String city;
+	private String cityName;
 
 	@OneToMany(mappedBy = "city", fetch = FetchType.LAZY)
 	private List<JobAdvertisement> jobAdvertisements;

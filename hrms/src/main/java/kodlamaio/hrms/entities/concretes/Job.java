@@ -25,11 +25,10 @@ public class Job {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	@ApiModelProperty(hidden = true)
 	private int id;
 
 	@Column(name = "job_title")
-	private String job_title;
+	private String jobTitle;
 
 	@OneToMany(mappedBy = "jobPosition")
 	private List<JobAdvertisement> jobAdvertisements;
