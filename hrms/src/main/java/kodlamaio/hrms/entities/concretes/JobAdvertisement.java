@@ -46,7 +46,6 @@ public class JobAdvertisement {
 	private Date lastApplyDate;
 
 	@Column(name = "create_date", nullable = false)
-	@ApiModelProperty(hidden = true)
 	private Date publishDate;
 
 	@Column(name = "is_active", nullable = false)
