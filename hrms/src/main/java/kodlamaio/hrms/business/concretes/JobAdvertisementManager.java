@@ -60,4 +60,8 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 				+ (jobAdvertisementToUpdate.isActive() ? "active" : "deactivated"));
 	}
 
+	@Override
+	public DataResult<JobAdvertisement> findById(int id) {
+		return new SuccessDataResult<JobAdvertisement>(this.jobAdvertDao.findById(id));
+	}
 }

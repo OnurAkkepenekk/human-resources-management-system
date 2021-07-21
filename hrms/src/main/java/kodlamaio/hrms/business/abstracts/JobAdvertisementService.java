@@ -17,4 +17,6 @@ public interface JobAdvertisementService {
 	DataResult<List<JobAdvertisement>> finfByIsActiveTrueAndEmployer_Id(int employerId);
 
 	DataResult<JobAdvertisement> findByIdAndEmployer_Id(int jobadvertisement, int employerId);
+	
+	DataResult<JobAdvertisement> findById(int id);
 }

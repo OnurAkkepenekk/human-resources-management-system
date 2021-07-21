@@ -51,5 +51,8 @@ public class JobAdvertisementController {
 	public DataResult<JobAdvertisement> changeStatus(int advertisementId, int employer_Id) {
 		return this.advertisementService.findByIdAndEmployer_Id(advertisementId, employer_Id);
 	}
-
+	@GetMapping("/id")
+	public DataResult<JobAdvertisement> findById(int id) {
+		return this.advertisementService.findById(id);
+	}
 }
