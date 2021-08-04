@@ -37,5 +37,4 @@ public class CVController {
 	public DataResult<List<CV>> getCv(@RequestParam int candidateId) {
 		return this.cvService.getCV(candidateId);
 	}
-
 }
