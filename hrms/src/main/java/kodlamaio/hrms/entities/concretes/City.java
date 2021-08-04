@@ -13,7 +13,6 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 @Data
