@@ -7,4 +7,5 @@ import kodlamaio.hrms.entities.concretes.Employer;
 
 public interface EmployerService {
 	DataResult<List<Employer>> getAll();
+	DataResult<Employer>getEmployerByEmployerId(int id);
 }

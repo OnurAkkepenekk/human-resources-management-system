@@ -27,4 +27,9 @@ public class EmployerManager implements EmployerService {
 		return new SuccessDataResult<List<Employer>>(this.employerDao.findAll(), "Listed employers");
 	}
 
+	@Override
+	public DataResult<Employer> getEmployerByEmployerId(int id) {
+		return new SuccessDataResult<Employer>(this.employerDao.findById(id));
+	}
+
 }
