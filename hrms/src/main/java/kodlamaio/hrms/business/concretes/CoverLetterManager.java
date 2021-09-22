@@ -22,7 +22,7 @@ public class CoverLetterManager implements CoverLetterService {
 
 	@Override
 	public Result add(CoverLetter coverLetter) {
-		// TODO Auto-generated method stub
+		this.coverLetterDao.save(coverLetter);
 		return new SuccessResult("Added successfully");
 	}
 
