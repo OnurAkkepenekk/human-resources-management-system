@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Data;
@@ -28,8 +29,9 @@ public class City {
 
 	@Column(name = "city_name", nullable = false)
 	private String cityName;
-
-	@OneToMany(mappedBy = "city", fetch = FetchType.LAZY)
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "city")
 	private List<JobAdvertisement> jobAdvertisements;
 
 }
