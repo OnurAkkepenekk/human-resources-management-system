@@ -2,7 +2,6 @@ package kodlamaio.hrms.api.controllers;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,20 +13,16 @@ import kodlamaio.hrms.business.abstracts.WorkTimeTypeService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.WorkTimeType;
-import kodlamaio.hrms.entities.concretes.WorkType;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/worktimetype")
 @CrossOrigin
+@RequiredArgsConstructor
 public class WorkTimeTypeController {
-
-	WorkTimeTypeService workTimeTypeService;
-
-	@Autowired
-	public WorkTimeTypeController(WorkTimeTypeService workTimeTypeService) {
-		super();
-		this.workTimeTypeService = workTimeTypeService;
-	}
+	@NonNull
+	private WorkTimeTypeService workTimeTypeService;
 
 	@PostMapping("/add")
 	Result add(@RequestBody WorkTimeType workTimeType) {

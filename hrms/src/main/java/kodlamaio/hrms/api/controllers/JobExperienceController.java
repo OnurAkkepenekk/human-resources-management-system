@@ -2,7 +2,6 @@ package kodlamaio.hrms.api.controllers;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,21 +12,18 @@ import org.springframework.web.bind.annotation.RestController;
 import kodlamaio.hrms.business.abstracts.JobExperienceService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.entities.concretes.Employee;
 import kodlamaio.hrms.entities.concretes.JobExperience;
 import kodlamaio.hrms.entities.dtos.JobExperienceDto;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/jobexperiences")
+@RequiredArgsConstructor
 public class JobExperienceController {
 
-	JobExperienceService jobExprienceService;
-
-	@Autowired
-	public JobExperienceController(JobExperienceService jobExprienceService) {
-		super();
-		this.jobExprienceService = jobExprienceService;
-	}
+	@NonNull
+	private JobExperienceService jobExprienceService;
 
 	@PostMapping("/add")
 	public Result add(@RequestBody JobExperience JobExperience) {
