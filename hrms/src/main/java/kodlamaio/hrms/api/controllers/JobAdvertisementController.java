@@ -2,7 +2,6 @@ package kodlamaio.hrms.api.controllers;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,18 +13,17 @@ import kodlamaio.hrms.business.abstracts.JobAdvertisementService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/jobadvertisements")
 @CrossOrigin
+@RequiredArgsConstructor
 public class JobAdvertisementController {
-	JobAdvertisementService advertisementService;
+	@NonNull
+	private JobAdvertisementService advertisementService;
 
-	@Autowired
-	public JobAdvertisementController(JobAdvertisementService advertisementService) {
-		super();
-		this.advertisementService = advertisementService;
-	}
 
 	@PostMapping("/add")
 	public Result Add(@RequestBody JobAdvertisement jobAdvert) {

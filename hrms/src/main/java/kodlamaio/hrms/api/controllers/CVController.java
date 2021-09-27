@@ -2,7 +2,6 @@ package kodlamaio.hrms.api.controllers;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,18 +13,16 @@ import kodlamaio.hrms.business.abstracts.CVService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.CV;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("api/cvs")
+@RequiredArgsConstructor
 public class CVController {
 
-	CVService cvService;
-
-	@Autowired
-	public CVController(CVService cvService) {
-		super();
-		this.cvService = cvService;
-	}
+	@NonNull
+	private CVService cvService;
 
 	@PostMapping("/add")
 	public Result add(@RequestBody CV cv) {
