@@ -1,8 +1,6 @@
 package kodlamaio.hrms.business.concretes;
 
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.JobExperienceService;
@@ -13,17 +11,13 @@ import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.JobExperienceDao;
 import kodlamaio.hrms.entities.concretes.JobExperience;
 import kodlamaio.hrms.entities.dtos.JobExperienceDto;
+import lombok.AllArgsConstructor;
 
 @Service
+@AllArgsConstructor
 public class JobExperienceManager implements JobExperienceService {
 
-	JobExperienceDao jobExperienceDao;
-
-	@Autowired
-	public JobExperienceManager(JobExperienceDao jobExperienceDao) {
-		super();
-		this.jobExperienceDao = jobExperienceDao;
-	}
+	private final JobExperienceDao jobExperienceDao;
 
 	@Override
 	public Result add(JobExperience jobExperience) {

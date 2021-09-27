@@ -2,7 +2,6 @@ package kodlamaio.hrms.business.concretes;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.WorkTimeTypeService;
@@ -12,17 +11,14 @@ import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.WorkTimeTypeDao;
 import kodlamaio.hrms.entities.concretes.WorkTimeType;
+import lombok.AllArgsConstructor;
 
 @Service
+@AllArgsConstructor
 public class WorkTimeTypeManager implements WorkTimeTypeService {
 
-	WorkTimeTypeDao workTimeTypeDao;
+	private final WorkTimeTypeDao workTimeTypeDao;
 
-	@Autowired
-	public WorkTimeTypeManager(WorkTimeTypeDao workTimeTypeDao) {
-		super();
-		this.workTimeTypeDao = workTimeTypeDao;
-	}
 
 	@Override
 	public Result add(WorkTimeType workTimeType) {

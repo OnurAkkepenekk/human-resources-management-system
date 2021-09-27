@@ -2,6 +2,7 @@ package kodlamaio.hrms.entities.concretes;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,8 +33,8 @@ public class CoverLetter {
 	private String covverLetter;
 
 	@JsonProperty(access = Access.WRITE_ONLY)
-	@ManyToOne()
-	@JoinColumn(name = "cv_id")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "cv_id", insertable = false, updatable = false)
 	private CV cv;
 
 }

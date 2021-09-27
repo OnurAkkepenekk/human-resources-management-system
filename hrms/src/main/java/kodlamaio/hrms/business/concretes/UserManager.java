@@ -9,6 +9,7 @@ import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.entities.abstracts.User;
 
 @Service
+
 public class UserManager implements UserService {
 
 	@Override

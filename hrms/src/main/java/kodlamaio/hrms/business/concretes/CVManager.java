@@ -2,7 +2,6 @@ package kodlamaio.hrms.business.concretes;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.CVService;
@@ -12,17 +11,13 @@ import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.CVDao;
 import kodlamaio.hrms.entities.concretes.CV;
+import lombok.AllArgsConstructor;
 
 @Service
+@AllArgsConstructor
 public class CVManager implements CVService {
 
-	CVDao cvDao;
-
-	@Autowired
-	public CVManager(CVDao cvDao) {
-		super();
-		this.cvDao = cvDao;
-	}
+	private final CVDao cvDao;
 
 	@Override
 	public DataResult<List<CV>> getCV(int candidateId) {
