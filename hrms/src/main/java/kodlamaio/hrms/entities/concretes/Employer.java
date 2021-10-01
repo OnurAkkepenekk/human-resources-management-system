@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import kodlamaio.hrms.entities.abstracts.User;
@@ -38,6 +39,7 @@ public class Employer extends User {
 	private boolean isActivated;
 
 	@OneToMany(mappedBy = "employer", fetch = FetchType.LAZY)
+	@JsonIgnore
 	private List<JobAdvertisement> jobAdvertisements;
 
 }
