@@ -9,6 +9,9 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -27,6 +30,7 @@ public class User {
 	@Column(name = "email")
 	private String email;
 	
+	@JsonProperty(access = Access.WRITE_ONLY)
 	@Column(name = "password")
 	private String password;
 
