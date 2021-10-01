@@ -6,7 +6,9 @@ import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.EmployeeService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
+import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
+import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.EmployeeDao;
 import kodlamaio.hrms.entities.concretes.Employee;
 import lombok.AllArgsConstructor;
@@ -21,9 +23,13 @@ public class EmployeeManager implements EmployeeService {
 	public DataResult<List<Employee>> getAll() {
 		return new SuccessDataResult<List<Employee>>(this.employeeDao.findAll(), "Listed employee");
 	}
-
 	@Override
 	public DataResult<Employee> getById(int id) {
 		return new SuccessDataResult<Employee>(this.employeeDao.getById(id));
+	}
+	@Override
+	public Result add(Employee employee){
+		this.employeeDao.save(employee);
+		return new SuccessResult("Successfull added.");
 	}
 }
