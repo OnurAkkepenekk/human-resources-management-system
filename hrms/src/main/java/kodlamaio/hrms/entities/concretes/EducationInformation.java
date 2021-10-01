@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,9 +14,7 @@ import javax.persistence.Table;
 
 import org.springframework.lang.Nullable;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -46,8 +45,8 @@ public class EducationInformation {
 	@JoinColumn(name = "department_id")
 	private UniversityDepartment universityDepartment;
 	
-	@JsonProperty(access = Access.WRITE_ONLY)
-	@ManyToOne()
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "cv_id")
+	@JsonIgnore
 	private CV cv;
 }
