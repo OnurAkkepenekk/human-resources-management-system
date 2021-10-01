@@ -1,5 +1,6 @@
 package kodlamaio.hrms.business.concretes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.JobAdvertisementDao;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
+import kodlamaio.hrms.entities.dtos.JobAdvertisementDto;
 import lombok.AllArgsConstructor;
 
 @Service
@@ -27,8 +29,26 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 	}
 
 	@Override
-	public DataResult<List<JobAdvertisement>> getAll() {
-		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertDao.findAll(), "Listed job advertisement ");
+	public DataResult<List<JobAdvertisementDto>> getAll() {
+
+		ArrayList<JobAdvertisementDto> abc = new ArrayList<JobAdvertisementDto>();
+		
+		for (JobAdvertisement advertisement : this.jobAdvertDao.findAll()) {
+			JobAdvertisementDto jobAdvertisementDto = new JobAdvertisementDto();
+			jobAdvertisementDto.setId(advertisement.getId());
+			jobAdvertisementDto.setCityName(advertisement.getCity().getCityName());
+			jobAdvertisementDto.setActive((advertisement.isActive()==true?"true":"false"));
+			jobAdvertisementDto.setCompanyName(advertisement.getEmployer().getCompanyName());
+			jobAdvertisementDto.setJobDescription(advertisement.getJobDescription());
+			jobAdvertisementDto.setJobPosition(advertisement.getJobPosition().getJobTitle());
+			jobAdvertisementDto.setMaxSalary(advertisement.getMaxSalary());
+			jobAdvertisementDto.setMinSalary(advertisement.getMinSalary());
+			jobAdvertisementDto.setOpenPositionCount(advertisement.getOpenPositionCount());
+			jobAdvertisementDto.setWorkTimeTypeName(advertisement.getWorkTimeType().getWorkTimeTypeName());
+			jobAdvertisementDto.setWorkTypeName(advertisement.getWorkType().getWorkTypeName());
+			abc.add(jobAdvertisementDto);
+		}
+		return new SuccessDataResult<List<JobAdvertisementDto>>(abc);
 	}
 
 	@Override
@@ -57,7 +77,20 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 	}
 
 	@Override
-	public DataResult<JobAdvertisement> findById(int id) {
-		return new SuccessDataResult<JobAdvertisement>(this.jobAdvertDao.findById(id));
+	public DataResult<JobAdvertisementDto> findById(int id) {
+		JobAdvertisementDto jobAdvertisementDto = new JobAdvertisementDto();
+		JobAdvertisement advertisement = this.jobAdvertDao.findById(id);
+		jobAdvertisementDto.setId(advertisement.getId());
+		jobAdvertisementDto.setCityName(advertisement.getCity().getCityName());
+		jobAdvertisementDto.setActive(advertisement.isActive() == true ? "true":"false");
+		jobAdvertisementDto.setCompanyName(advertisement.getEmployer().getCompanyName());
+		jobAdvertisementDto.setJobDescription(advertisement.getJobDescription());
+		jobAdvertisementDto.setJobPosition(advertisement.getJobPosition().getJobTitle());
+		jobAdvertisementDto.setMaxSalary(advertisement.getMaxSalary());
+		jobAdvertisementDto.setMinSalary(advertisement.getMinSalary());
+		jobAdvertisementDto.setOpenPositionCount(advertisement.getOpenPositionCount());
+		jobAdvertisementDto.setWorkTimeTypeName(advertisement.getWorkTimeType().getWorkTimeTypeName());
+		jobAdvertisementDto.setWorkTypeName(advertisement.getWorkType().getWorkTypeName());
+		return new SuccessDataResult<JobAdvertisementDto>(jobAdvertisementDto);
 	}
 }

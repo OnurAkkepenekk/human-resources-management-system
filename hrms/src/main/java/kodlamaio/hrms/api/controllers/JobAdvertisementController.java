@@ -13,6 +13,7 @@ import kodlamaio.hrms.business.abstracts.JobAdvertisementService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
+import kodlamaio.hrms.entities.dtos.JobAdvertisementDto;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
@@ -31,7 +32,7 @@ public class JobAdvertisementController {
 	}
 
 	@GetMapping("/getAll")
-	public DataResult<List<JobAdvertisement>> getAll() {
+	public DataResult<List<JobAdvertisementDto>> getAll() {
 		return this.advertisementService.getAll();
 	}
 
@@ -50,7 +51,7 @@ public class JobAdvertisementController {
 		return this.advertisementService.findByIdAndEmployer_Id(advertisementId, employer_Id);
 	}
 	@GetMapping("/id")
-	public DataResult<JobAdvertisement> findById(int id) {
+	public DataResult<JobAdvertisementDto> findById(int id) {
 		return this.advertisementService.findById(id);
 	}
 }
