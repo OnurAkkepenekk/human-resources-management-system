@@ -31,13 +31,14 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 	@Override
 	public DataResult<List<JobAdvertisementDto>> getAll() {
 
-		ArrayList<JobAdvertisementDto> abc = new ArrayList<JobAdvertisementDto>();
-		
+		ArrayList<JobAdvertisementDto> jobAdvertisementDtoList = new ArrayList<JobAdvertisementDto>();
+
 		for (JobAdvertisement advertisement : this.jobAdvertDao.findAll()) {
 			JobAdvertisementDto jobAdvertisementDto = new JobAdvertisementDto();
 			jobAdvertisementDto.setId(advertisement.getId());
 			jobAdvertisementDto.setCityName(advertisement.getCity().getCityName());
-			jobAdvertisementDto.setActive((advertisement.isActive()==true?"true":"false"));
+			jobAdvertisementDto.setEmployerId(advertisement.getEmployer().getId());
+			jobAdvertisementDto.setActive((advertisement.isActive() == true ? "true" : "false"));
 			jobAdvertisementDto.setCompanyName(advertisement.getEmployer().getCompanyName());
 			jobAdvertisementDto.setJobDescription(advertisement.getJobDescription());
 			jobAdvertisementDto.setJobPosition(advertisement.getJobPosition().getJobTitle());
@@ -46,9 +47,12 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 			jobAdvertisementDto.setOpenPositionCount(advertisement.getOpenPositionCount());
 			jobAdvertisementDto.setWorkTimeTypeName(advertisement.getWorkTimeType().getWorkTimeTypeName());
 			jobAdvertisementDto.setWorkTypeName(advertisement.getWorkType().getWorkTypeName());
-			abc.add(jobAdvertisementDto);
+			jobAdvertisementDto.setLastApplyDate(advertisement.getLastApplyDate());
+			jobAdvertisementDto.setPublishDate(advertisement.getPublishDate());
+			jobAdvertisementDto.setWebAddress(advertisement.getEmployer().getWebAddress());
+			jobAdvertisementDtoList.add(jobAdvertisementDto);
 		}
-		return new SuccessDataResult<List<JobAdvertisementDto>>(abc);
+		return new SuccessDataResult<List<JobAdvertisementDto>>(jobAdvertisementDtoList);
 	}
 
 	@Override
@@ -82,15 +86,19 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 		JobAdvertisement advertisement = this.jobAdvertDao.findById(id);
 		jobAdvertisementDto.setId(advertisement.getId());
 		jobAdvertisementDto.setCityName(advertisement.getCity().getCityName());
-		jobAdvertisementDto.setActive(advertisement.isActive() == true ? "true":"false");
+		jobAdvertisementDto.setEmployerId(advertisement.getEmployer().getId());
+		jobAdvertisementDto.setActive(advertisement.isActive() == true ? "true" : "false");
 		jobAdvertisementDto.setCompanyName(advertisement.getEmployer().getCompanyName());
 		jobAdvertisementDto.setJobDescription(advertisement.getJobDescription());
 		jobAdvertisementDto.setJobPosition(advertisement.getJobPosition().getJobTitle());
 		jobAdvertisementDto.setMaxSalary(advertisement.getMaxSalary());
 		jobAdvertisementDto.setMinSalary(advertisement.getMinSalary());
+		jobAdvertisementDto.setWebAddress(advertisement.getEmployer().getWebAddress());
 		jobAdvertisementDto.setOpenPositionCount(advertisement.getOpenPositionCount());
 		jobAdvertisementDto.setWorkTimeTypeName(advertisement.getWorkTimeType().getWorkTimeTypeName());
 		jobAdvertisementDto.setWorkTypeName(advertisement.getWorkType().getWorkTypeName());
+		jobAdvertisementDto.setPublishDate(advertisement.getPublishDate());
+		jobAdvertisementDto.setLastApplyDate(advertisement.getLastApplyDate());
 		return new SuccessDataResult<JobAdvertisementDto>(jobAdvertisementDto);
 	}
 }
