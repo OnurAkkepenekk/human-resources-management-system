@@ -31,12 +31,15 @@ public class Candidate extends User {
 
 	@Column(name = "last_name")
 	private String lastName;
+	
+	@Column(name = "gender")
+	private String gender;
 
-	@Column(name = "identiy_number")
-	private String identiy_number;
+	@Column(name = "identity_number")
+	private String identityNumber;
 
 	@Column(name = "birth_date")
-	private Date birth_date;
+	private Date birthDate;
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "candidate")
