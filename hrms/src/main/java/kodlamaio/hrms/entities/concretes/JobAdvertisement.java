@@ -21,7 +21,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "job_advertisements")
-
 public class JobAdvertisement {
 
 	@Id
@@ -70,16 +69,5 @@ public class JobAdvertisement {
 	@ManyToOne
 	@JoinColumn(name = "work_type_id")
 	private WorkType workType;
-
-	public JobAdvertisement(String jobDescription, Double minSalary, Double maxSalary, int openPositionCount,
-			Date lastApplyDate, Date createDate, boolean isActive) {
-		this.jobDescription = jobDescription;
-		this.minSalary = minSalary;
-		this.maxSalary = maxSalary;
-		this.openPositionCount = openPositionCount;
-		this.lastApplyDate = lastApplyDate;
-		this.publishDate = createDate;
-		this.isActive = isActive;
-	}
 
 }
