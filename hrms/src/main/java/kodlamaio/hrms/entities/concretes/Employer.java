@@ -37,7 +37,9 @@ public class Employer extends User {
 
 	@Column(name = "is_activated")
 	private boolean isActivated;
-
+	
+	@Column(name = "introduction")
+	private String introduction;
 	@OneToMany(mappedBy = "employer", fetch = FetchType.LAZY)
 	@JsonIgnore
 	private List<JobAdvertisement> jobAdvertisements;
