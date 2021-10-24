@@ -11,4 +11,6 @@ public interface CVService {
 	DataResult<List<CV>> getCV(int candidateId);
 
 	Result add(CV cv);
+
+	Result updateCreationDate(int id);
 }
