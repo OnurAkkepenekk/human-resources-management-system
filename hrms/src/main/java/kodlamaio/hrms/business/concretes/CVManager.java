@@ -1,8 +1,10 @@
 package kodlamaio.hrms.business.concretes;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import kodlamaio.hrms.business.abstracts.CVService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
@@ -28,6 +30,13 @@ public class CVManager implements CVService {
 	public Result add(CV cv) {
 		this.cvDao.save(cv);
 		return new SuccessResult("Added successfully");
+	}
+
+	@Override
+	public Result updateCreationDate(int id) {
+		Date date = new Date(System.currentTimeMillis());
+		this.cvDao.updateCreationDate(id, date);
+		return new SuccessResult("Creation date updated");
 	}
 
 }
