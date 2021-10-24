@@ -1,5 +1,6 @@
 package kodlamaio.hrms.entities.concretes;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -11,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,28 +30,38 @@ public class CV {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@OneToMany(mappedBy = "cv")
-	private List<EducationInformation> educationInformations;
-
 	@ManyToOne()
 	@JoinColumn(name = "candidate_id")
 	private Candidate candidate;
+	
+	@Column(name ="creation_date")
+	private Date creationDate;
 
 	@OneToMany(mappedBy = "cv")
+	@JsonIgnore
+	private List<EducationInformation> educationInformations;
+
+	@OneToMany(mappedBy = "cv")
+	@JsonIgnore
 	private List<JobExperience> jobExperiences;
 
 	@OneToMany(mappedBy = "cv")
+	@JsonIgnore
 	private List<ForeignLanguage> foreignLanguages;
 
 	@OneToMany(mappedBy = "cv")
+	@JsonIgnore
 	private List<Image> image;
 
 	@OneToMany(mappedBy = "cv")
+	@JsonIgnore
 	private List<Link> link;
-	
+
 	@OneToMany(mappedBy = "cv")
+	@JsonIgnore
 	private List<SkillForCV> skillForCV;
-	
+
 	@OneToMany(mappedBy = "cv")
+	@JsonIgnore
 	private List<CoverLetter> coverLetters;
 }
