@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -39,6 +40,7 @@ public class Candidate extends User {
 	private String identityNumber;
 
 	@Column(name = "birth_date")
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date birthDate;
 
 	@JsonIgnore
