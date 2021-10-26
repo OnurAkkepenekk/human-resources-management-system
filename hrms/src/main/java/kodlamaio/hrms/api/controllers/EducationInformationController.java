@@ -2,6 +2,7 @@ package kodlamaio.hrms.api.controllers;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/api/educationinformations")
 @RequiredArgsConstructor
+@CrossOrigin
 public class EducationInformationController {
 
 	@NonNull
@@ -32,7 +34,7 @@ public class EducationInformationController {
 	}
 
 	@GetMapping("/getEducationInformationsByUserId")
-	public DataResult<List<EducationInformationDto>> getEducationInformationsByUserId(@RequestParam int candidateId) {
+	public DataResult<List<EducationInformationDto>> getEducationInformationsByUserId(@RequestParam("candidateId") int candidateId) {
 
 		return this.educationInformationService.getEducationInformationsByUserId(candidateId);
 	}

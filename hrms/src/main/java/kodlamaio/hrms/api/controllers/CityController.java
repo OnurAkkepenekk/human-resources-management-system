@@ -32,7 +32,6 @@ public class CityController {
 	@PostMapping("/add")
 	public Result add(@RequestBody City city) {
 		return this.cityService.add(city);
-		
 	}
 
 }
