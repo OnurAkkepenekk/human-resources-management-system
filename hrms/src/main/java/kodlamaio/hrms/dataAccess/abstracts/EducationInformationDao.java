@@ -13,7 +13,8 @@ public interface EducationInformationDao extends JpaRepository<EducationInformat
 
 	@Query("Select new kodlamaio.hrms.entities.dtos.EducationInformationDto"
 			+ "(candidate.firstName, candidate.lastName, u.universityName, d.departmentName,i.startDate,i.graduateDate) "
-			+ "From Candidate candidate Inner Join candidate.cvs c Inner Join c.educationInformations i Inner Join i.universityDepartment d Inner Join i.university u"
-			+ " Where candidate.id =:id ORDER BY i.startDate DESC")
-	List<EducationInformationDto> getEducationInformations(@Param("id") int id);
+			+ "From Candidate candidate Inner Join candidate.cvs c Inner Join c.educationInformations i "
+			+ "Inner Join i.universityDepartment d Inner Join i.university u"
+			+ " Where candidate.id =:candidateId ORDER BY i.startDate DESC")
+	List<EducationInformationDto> getEducationInformations(@Param("candidateId") int candidateId);
 }

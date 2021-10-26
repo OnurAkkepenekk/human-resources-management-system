@@ -15,6 +15,8 @@ import javax.persistence.Table;
 import org.springframework.lang.Nullable;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,6 +26,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "education_informations")
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","cv"})
 public class EducationInformation {
 	@Id
 	@Column(name = "id")
@@ -37,11 +40,11 @@ public class EducationInformation {
 	@Column(name = "graduate_date")
 	private Date graduateDate;
 	
-	@ManyToOne()
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "university_id")
 	private University university;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "department_id")
 	private UniversityDepartment universityDepartment;
 	
