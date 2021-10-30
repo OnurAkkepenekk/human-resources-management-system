@@ -11,8 +11,10 @@ import kodlamaio.hrms.entities.dtos.JobExperienceDto;
 
 public interface JobExperienceDao extends JpaRepository<JobExperience, Integer> {
 	@Query("Select new kodlamaio.hrms.entities.dtos.JobExperienceDto"
-			+ "(j.firstName,j.lastName,e.workPlaceName,e.jobPosition,e.startDate,e.quitDate) "
+			+ "(j.firstName,j.lastName,e.workPlaceName,e.jobPosition,e.startDate,e.quitDate)"
 			+ "From Candidate j Inner Join j.cvs c Inner Join c.jobExperiences e "
-			+ "Where j.id =:id ORDER BY e.startDate DESC")
+			+ "Where j.id =:id")
 	List<JobExperienceDto> getJobExperiences(@Param("id") int id);
+
+
 }

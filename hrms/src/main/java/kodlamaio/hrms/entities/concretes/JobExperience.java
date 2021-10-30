@@ -13,9 +13,6 @@ import javax.persistence.Table;
 
 import org.springframework.lang.Nullable;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -45,7 +42,6 @@ public class JobExperience {
 	@Column(name = "quit_date")
 	private String quitDate;
 
-	@JsonProperty(access = Access.WRITE_ONLY)
 	@ManyToOne()
 	@JoinColumn(name = "cv_id")
 	private CV cv;
