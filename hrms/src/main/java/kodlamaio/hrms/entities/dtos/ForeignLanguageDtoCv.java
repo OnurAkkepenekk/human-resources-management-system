@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ForeignLanguageDtoCv {
 	
+	private int id;
+	
 	private String language;
 
 	private int languageLevel;
