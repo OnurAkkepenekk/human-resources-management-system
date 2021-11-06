@@ -40,4 +40,9 @@ public class EmployerManager implements EmployerService {
 		return new SuccessDataResult<Employer>(this.employerDao.findByCompanyName(companyName));
 	}
 
+	@Override
+	public DataResult<Employer> update(Employer employer) {
+		return new SuccessDataResult<Employer>(this.employerDao.save(employer));
+	}
+
 }
