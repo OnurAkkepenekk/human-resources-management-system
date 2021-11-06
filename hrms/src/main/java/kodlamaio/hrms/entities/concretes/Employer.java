@@ -40,6 +40,10 @@ public class Employer extends User {
 	
 	@Column(name = "introduction")
 	private String introduction;
+	
+	@Column(name="prefix_number")
+	private int prefix;
+	
 	@OneToMany(mappedBy = "employer", fetch = FetchType.LAZY)
 	@JsonIgnore
 	private List<JobAdvertisement> jobAdvertisements;

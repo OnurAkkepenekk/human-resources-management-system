@@ -4,9 +4,12 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.hrms.business.abstracts.EmployerService;
@@ -25,22 +28,27 @@ public class EmployerController {
 	private EmployerService employerService;
 
 	@GetMapping("/getall")
-	public DataResult<List<Employer>>getAll(){
+	public DataResult<List<Employer>> getAll() {
 		return this.employerService.getAll();
 	}
-	
+
 	@GetMapping("/id")
-	public DataResult<Employer>getEmployerByEmployerId(int id){
-		return this.employerService.getEmployerByEmployerId(id);		
+	public DataResult<Employer> getEmployerByEmployerId(int id) {
+		return this.employerService.getEmployerByEmployerId(id);
 	}
+
 	@GetMapping("/companyName")
 	public DataResult<Employer> getEmployerByCompanyName(String companyName) {
 		return (this.employerService.getEmployerByCompanyName(companyName));
 	}
-	@PostMapping("/add")
-	public Result add(@RequestBody Employer employer){
-		return this.employerService.add(employer);		
-	}
-	
 
+	@PostMapping("/add")
+	public Result add(@RequestBody Employer employer) {
+		return this.employerService.add(employer);
+	}
+
+	@PutMapping("/update")
+	public DataResult<Employer> update(@RequestBody Employer employer) {
+		return this.employerService.update(employer);
+	}
 }

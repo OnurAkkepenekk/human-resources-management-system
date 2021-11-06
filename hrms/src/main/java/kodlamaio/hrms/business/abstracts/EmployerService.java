@@ -11,4 +11,5 @@ public interface EmployerService {
 	DataResult<Employer>getEmployerByEmployerId(int id);
 	DataResult<Employer>getEmployerByCompanyName(String companyName);
 	Result add(Employer employer);
+	DataResult<Employer> update(Employer employer);
 }
