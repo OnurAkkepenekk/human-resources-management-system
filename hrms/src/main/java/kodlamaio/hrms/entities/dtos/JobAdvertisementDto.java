@@ -23,7 +23,7 @@ public class JobAdvertisementDto {
 	private String workTimeTypeName;
 	private String workTypeName;
 	private String companyName;
-	private String active;
+	private boolean active;
 	private Date publishDate;
 	private Date lastApplyDate;
 	private String webAddress;

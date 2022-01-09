@@ -15,6 +15,4 @@ public interface JobExperienceDao extends JpaRepository<JobExperience, Integer> 
 			+ "From Candidate j Inner Join j.cvs c Inner Join c.jobExperiences e "
 			+ "Where j.id =:id")
 	List<JobExperienceDto> getJobExperiences(@Param("id") int id);
-
-
 }

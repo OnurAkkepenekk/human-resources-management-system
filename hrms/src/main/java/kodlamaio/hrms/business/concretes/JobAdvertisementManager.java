@@ -38,7 +38,7 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 			jobAdvertisementDto.setId(advertisement.getId());
 			jobAdvertisementDto.setCityName(advertisement.getCity().getCityName());
 			jobAdvertisementDto.setEmployerId(advertisement.getEmployer().getId());
-			jobAdvertisementDto.setActive((advertisement.isActive() == true ? "true" : "false"));
+			jobAdvertisementDto.setActive((advertisement.isActive()));
 			jobAdvertisementDto.setCompanyName(advertisement.getEmployer().getCompanyName());
 			jobAdvertisementDto.setJobDescription(advertisement.getJobDescription());
 			jobAdvertisementDto.setJobPosition(advertisement.getJobPosition().getJobTitle());
@@ -87,7 +87,7 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 		jobAdvertisementDto.setId(advertisement.getId());
 		jobAdvertisementDto.setCityName(advertisement.getCity().getCityName());
 		jobAdvertisementDto.setEmployerId(advertisement.getEmployer().getId());
-		jobAdvertisementDto.setActive(advertisement.isActive() == true ? "true" : "false");
+		jobAdvertisementDto.setActive(advertisement.isActive());
 		jobAdvertisementDto.setCompanyName(advertisement.getEmployer().getCompanyName());
 		jobAdvertisementDto.setJobDescription(advertisement.getJobDescription());
 		jobAdvertisementDto.setJobPosition(advertisement.getJobPosition().getJobTitle());
@@ -100,5 +100,12 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 		jobAdvertisementDto.setPublishDate(advertisement.getPublishDate());
 		jobAdvertisementDto.setLastApplyDate(advertisement.getLastApplyDate());
 		return new SuccessDataResult<JobAdvertisementDto>(jobAdvertisementDto);
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisementDto>> searchJobAdvertisement(int cityId, int jobId, int workTimeTypeId,
+			int workTypeId, String orderBy, String orderDirection) {
+		
+		return new SuccessDataResult<List<JobAdvertisementDto>>(this.jobAdvertDao.searchJobAdvertisement(cityId, jobId, workTimeTypeId, workTypeId),"Merhaba");
 	}
 }
