@@ -18,6 +18,9 @@ public interface JobAdvertisementService {
 	DataResult<List<JobAdvertisement>> finfByIsActiveTrueAndEmployer_Id(int employerId);
 
 	DataResult<JobAdvertisement> findByIdAndEmployer_Id(int jobadvertisement, int employerId);
-	
+
 	DataResult<JobAdvertisementDto> findById(int id);
+
+	DataResult<List<JobAdvertisementDto>> searchJobAdvertisement(int cityId, int jobId, int workTimeTypeId,
+			int workTypeId, String orderBy, String orderDirection);
 }
