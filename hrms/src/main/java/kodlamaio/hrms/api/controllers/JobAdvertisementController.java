@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.hrms.business.abstracts.JobAdvertisementService;
@@ -24,7 +25,6 @@ import lombok.RequiredArgsConstructor;
 public class JobAdvertisementController {
 	@NonNull
 	private JobAdvertisementService advertisementService;
-
 
 	@PostMapping("/add")
 	public Result Add(@RequestBody JobAdvertisement jobAdvert) {
@@ -50,8 +50,19 @@ public class JobAdvertisementController {
 	public DataResult<JobAdvertisement> changeStatus(int advertisementId, int employer_Id) {
 		return this.advertisementService.findByIdAndEmployer_Id(advertisementId, employer_Id);
 	}
+
 	@GetMapping("details/id")
 	public DataResult<JobAdvertisementDto> findById(int id) {
 		return this.advertisementService.findById(id);
+	}
+
+	@GetMapping("/list/search")
+	public DataResult<List<JobAdvertisementDto>> searchJobAdvertisements(@RequestParam int cityId,
+			@RequestParam int jobId, @RequestParam int workTimeTypeId, @RequestParam int workTypeId,
+			@RequestParam(name = "orderByField", defaultValue = "id") String orderBy,
+			@RequestParam(name = "orderDirection", defaultValue = "asc") String orderDirection) {
+
+		return this.advertisementService.searchJobAdvertisement(cityId,jobId,workTimeTypeId,workTypeId,orderBy,orderDirection);
+
 	}
 }
