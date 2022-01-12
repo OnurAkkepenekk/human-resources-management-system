@@ -13,6 +13,7 @@ import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.CandidateDao;
 import kodlamaio.hrms.entities.concretes.Candidate;
+import kodlamaio.hrms.entities.dtos.CandidateDto;
 import lombok.AllArgsConstructor;
 
 @Service
@@ -38,6 +39,26 @@ public class CandidateManager implements CandidateService {
 	public Result add(Candidate candidate) {
 		this.candidateDao.save(candidate);
 		return new SuccessResult("Candidate added successfully");
+	}
+
+
+	@Override
+	public DataResult<CandidateDto> update(CandidateDto candidateDto) {
+		if (this.candidateDao.existsById(candidateDto.getId())) {
+			Candidate candidate = new Candidate();
+			candidate.setFirstName(candidateDto.getFirstName());
+			candidate.setLastName(candidateDto.getLastName());
+			candidate.setBirthDate(candidateDto.getBirthDate());
+			candidate.setEmail(candidateDto.getEmail());
+			candidate.setGender(candidateDto.getGender());
+			candidate.setIdentityNumber(candidateDto.getIdentityNumber());
+			candidate.setId(candidateDto.getId());
+			this.candidateDao.save(candidate);
+			
+			System.out.println(this.candidateDao.findById(candidateDto.getId()));
+			return new SuccessDataResult<CandidateDto>(candidateDto,"Update successfull");
+		}
+		return new SuccessDataResult<CandidateDto>("Update Error");
 	}
 
 }
