@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +14,8 @@ import kodlamaio.hrms.business.abstracts.CandidateService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.Candidate;
+import kodlamaio.hrms.entities.concretes.Employer;
+import kodlamaio.hrms.entities.dtos.CandidateDto;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
@@ -37,5 +40,10 @@ public class CandidateController {
 	@PostMapping("/add")
 	public Result add(@RequestBody Candidate candidate){
 		return this.candidateService.add(candidate); 
+	}
+	
+	@PutMapping("/update")
+	public DataResult<CandidateDto> update(@RequestBody CandidateDto candidate) {
+		return this.candidateService.update(candidate);
 	}
 }
