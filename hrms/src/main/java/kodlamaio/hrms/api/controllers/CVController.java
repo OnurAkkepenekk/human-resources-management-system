@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -21,7 +20,6 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@CrossOrigin
 @RequestMapping("api/cvs")
 @RequiredArgsConstructor
 public class CVController {
