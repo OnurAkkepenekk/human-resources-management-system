@@ -2,7 +2,6 @@ package kodlamaio.hrms.api.controllers;
 
 import java.util.List;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -14,14 +13,12 @@ import kodlamaio.hrms.business.abstracts.CandidateService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.Candidate;
-import kodlamaio.hrms.entities.concretes.Employer;
 import kodlamaio.hrms.entities.dtos.CandidateDto;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("api/candidate")
-@CrossOrigin
 @RequiredArgsConstructor
 public class CandidateController {
 	@NonNull
