@@ -1,6 +1,7 @@
 package kodlamaio.hrms.business.concretes;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kodlamaio.hrms.business.abstracts.UniversityDepartmentService;
 import kodlamaio.hrms.core.utilities.results.Result;
@@ -16,6 +17,7 @@ public class UniversityDepartmentManager implements UniversityDepartmentService 
 	private final UniversityDepartmentDao universityDepartmentDao;
 
 	@Override
+	@Transactional
 	public Result add(UniversityDepartment universityDepartment) {
 		this.universityDepartmentDao.save(universityDepartment);
 		return new SuccessResult("UniversityDepartment adding successful");

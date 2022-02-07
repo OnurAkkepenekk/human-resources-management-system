@@ -3,6 +3,7 @@ package kodlamaio.hrms.business.concretes;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kodlamaio.hrms.business.abstracts.JobService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
@@ -25,6 +26,7 @@ public class JobManager implements JobService {
 	}
 
 	@Override
+	@Transactional
 	public Result add(Job job) {
 		this.jobDao.save(job);
 		return new SuccessResult("Job added successfully");

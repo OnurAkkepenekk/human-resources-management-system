@@ -1,9 +1,9 @@
 package kodlamaio.hrms.business.concretes;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kodlamaio.hrms.business.abstracts.EducationInformationService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
@@ -22,6 +22,7 @@ public class EducationInformationManager implements EducationInformationService 
 	private final EducationInformationDao educationInformationDao;
 
 	@Override
+	@Transactional
 	public Result add(EducationInformation educationInformation) {
 		this.educationInformationDao.save(educationInformation);
 		return new SuccessResult("Eğitim bilgileri Eklendi");
