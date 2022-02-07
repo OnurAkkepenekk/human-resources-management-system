@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kodlamaio.hrms.business.abstracts.JobAdvertisementService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
@@ -14,18 +15,23 @@ import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.JobAdvertisementDao;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 import kodlamaio.hrms.entities.dtos.JobAdvertisementDto;
+import kodlamaio.hrms.exception.NotFoundException;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class JobAdvertisementManager implements JobAdvertisementService {
 
 	private final JobAdvertisementDao jobAdvertDao;
 
 	@Override
+	@Transactional
 	public Result add(JobAdvertisement jobAdvert) {
 		this.jobAdvertDao.save(jobAdvert);
-		return new SuccessResult("Job advertisement has been added.");
+		log.info("Job advertisement added");
+		return new SuccessResult("Job advertisement added");
 	}
 
 	@Override
@@ -82,30 +88,35 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 
 	@Override
 	public DataResult<JobAdvertisementDto> findById(int id) {
-		JobAdvertisementDto jobAdvertisementDto = new JobAdvertisementDto();
-		JobAdvertisement advertisement = this.jobAdvertDao.findById(id);
-		jobAdvertisementDto.setId(advertisement.getId());
-		jobAdvertisementDto.setCityName(advertisement.getCity().getCityName());
-		jobAdvertisementDto.setEmployerId(advertisement.getEmployer().getId());
-		jobAdvertisementDto.setActive(advertisement.isActive());
-		jobAdvertisementDto.setCompanyName(advertisement.getEmployer().getCompanyName());
-		jobAdvertisementDto.setJobDescription(advertisement.getJobDescription());
-		jobAdvertisementDto.setJobPosition(advertisement.getJobPosition().getJobTitle());
-		jobAdvertisementDto.setMaxSalary(advertisement.getMaxSalary());
-		jobAdvertisementDto.setMinSalary(advertisement.getMinSalary());
-		jobAdvertisementDto.setWebAddress(advertisement.getEmployer().getWebAddress());
-		jobAdvertisementDto.setOpenPositionCount(advertisement.getOpenPositionCount());
-		jobAdvertisementDto.setWorkTimeTypeName(advertisement.getWorkTimeType().getWorkTimeTypeName());
-		jobAdvertisementDto.setWorkTypeName(advertisement.getWorkType().getWorkTypeName());
-		jobAdvertisementDto.setPublishDate(advertisement.getPublishDate());
-		jobAdvertisementDto.setLastApplyDate(advertisement.getLastApplyDate());
-		return new SuccessDataResult<JobAdvertisementDto>(jobAdvertisementDto);
+		if (jobAdvertDao.existsById(id)) {
+			JobAdvertisementDto jobAdvertisementDto = new JobAdvertisementDto();
+			JobAdvertisement advertisement = this.jobAdvertDao.findById(id);
+			jobAdvertisementDto.setId(advertisement.getId());
+			jobAdvertisementDto.setCityName(advertisement.getCity().getCityName());
+			jobAdvertisementDto.setEmployerId(advertisement.getEmployer().getId());
+			jobAdvertisementDto.setActive(advertisement.isActive());
+			jobAdvertisementDto.setCompanyName(advertisement.getEmployer().getCompanyName());
+			jobAdvertisementDto.setJobDescription(advertisement.getJobDescription());
+			jobAdvertisementDto.setJobPosition(advertisement.getJobPosition().getJobTitle());
+			jobAdvertisementDto.setMaxSalary(advertisement.getMaxSalary());
+			jobAdvertisementDto.setMinSalary(advertisement.getMinSalary());
+			jobAdvertisementDto.setWebAddress(advertisement.getEmployer().getWebAddress());
+			jobAdvertisementDto.setOpenPositionCount(advertisement.getOpenPositionCount());
+			jobAdvertisementDto.setWorkTimeTypeName(advertisement.getWorkTimeType().getWorkTimeTypeName());
+			jobAdvertisementDto.setWorkTypeName(advertisement.getWorkType().getWorkTypeName());
+			jobAdvertisementDto.setPublishDate(advertisement.getPublishDate());
+			jobAdvertisementDto.setLastApplyDate(advertisement.getLastApplyDate());
+			log.info(String.format("Job Posting number %d found!", id));
+			return new SuccessDataResult<JobAdvertisementDto>(jobAdvertisementDto);
+		}
+		throw new NotFoundException(String.format("Job advertisement number %d not found", id));
 	}
 
 	@Override
 	public DataResult<List<JobAdvertisementDto>> searchJobAdvertisement(int cityId, int jobId, int workTimeTypeId,
 			int workTypeId, String orderBy, String orderDirection) {
-		
-		return new SuccessDataResult<List<JobAdvertisementDto>>(this.jobAdvertDao.searchJobAdvertisement(cityId, jobId, workTimeTypeId, workTypeId),"Merhaba");
+
+		return new SuccessDataResult<List<JobAdvertisementDto>>(
+				this.jobAdvertDao.searchJobAdvertisement(cityId, jobId, workTimeTypeId, workTypeId), "Merhaba");
 	}
 }

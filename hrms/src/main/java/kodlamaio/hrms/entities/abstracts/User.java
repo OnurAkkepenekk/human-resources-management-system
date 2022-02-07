@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
@@ -27,7 +28,8 @@ public class User {
 	@Column(name = "id")
 	private int id;
 
-	@Column(name = "email")
+	@Email(message = "Email is incorrect")
+	@Column(name = "email", nullable = false, unique = true)
 	private String email;
 	
 	@JsonProperty(access = Access.WRITE_ONLY)
