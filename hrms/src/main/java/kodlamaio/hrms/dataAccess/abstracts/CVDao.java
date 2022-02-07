@@ -16,4 +16,8 @@ public interface CVDao extends JpaRepository<CV, Integer> {
 	@Modifying
 	@Query("update CV c set c.creationDate = :date where c.id = :id")
 	void updateCreationDate(int id, Date date);
+
+	boolean findByCandidateId(int candidateId);
+
+	boolean existsByCandidate_Id(int candidateId);
 }
