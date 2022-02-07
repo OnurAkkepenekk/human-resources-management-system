@@ -1,6 +1,7 @@
 package kodlamaio.hrms.business.concretes;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kodlamaio.hrms.business.abstracts.SkillService;
 import kodlamaio.hrms.core.utilities.results.Result;
@@ -16,6 +17,7 @@ public class SkillManager implements SkillService {
 	private final SkillDao skillDao;
 	
 	@Override
+	@Transactional
 	public Result add(Skill skill) {
 		this.skillDao.save(skill);
 		return new SuccessResult("Skill added.");

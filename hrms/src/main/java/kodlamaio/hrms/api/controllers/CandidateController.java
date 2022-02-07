@@ -2,6 +2,8 @@ package kodlamaio.hrms.api.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -35,7 +37,7 @@ public class CandidateController {
 	}
 	
 	@PostMapping("/add")
-	public Result add(@RequestBody Candidate candidate){
+	public Result add(@Valid @RequestBody Candidate candidate){
 		return this.candidateService.add(candidate); 
 	}
 	

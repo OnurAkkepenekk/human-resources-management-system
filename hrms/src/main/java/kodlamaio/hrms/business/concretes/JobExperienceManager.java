@@ -2,6 +2,7 @@ package kodlamaio.hrms.business.concretes;
 
 import java.util.List;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kodlamaio.hrms.business.abstracts.JobExperienceService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
@@ -20,6 +21,7 @@ public class JobExperienceManager implements JobExperienceService {
 	private final JobExperienceDao jobExperienceDao;
 
 	@Override
+	@Transactional
 	public Result add(JobExperience jobExperience) {
 		this.jobExperienceDao.save(jobExperience);
 		return new SuccessResult("Add successfull");

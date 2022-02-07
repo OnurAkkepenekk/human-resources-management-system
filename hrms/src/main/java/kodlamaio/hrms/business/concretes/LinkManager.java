@@ -3,6 +3,7 @@ package kodlamaio.hrms.business.concretes;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kodlamaio.hrms.business.abstracts.LinkService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
@@ -21,6 +22,7 @@ public class LinkManager implements LinkService {
 	private final LinkDao linkdao;
 
 	@Override
+	@Transactional
 	public Result add(Link link) {
 		this.linkdao.save(link);
 		return new SuccessResult("Added link");

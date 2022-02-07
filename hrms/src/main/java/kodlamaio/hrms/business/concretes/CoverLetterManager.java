@@ -3,6 +3,7 @@ package kodlamaio.hrms.business.concretes;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kodlamaio.hrms.business.abstracts.CoverLetterService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
@@ -21,6 +22,7 @@ public class CoverLetterManager implements CoverLetterService {
 	private final CoverLetterDao coverLetterDao;
 	
 	@Override
+	@Transactional
 	public Result add(CoverLetter coverLetter) {
 		this.coverLetterDao.save(coverLetter);
 		return new SuccessResult("Added successfully");

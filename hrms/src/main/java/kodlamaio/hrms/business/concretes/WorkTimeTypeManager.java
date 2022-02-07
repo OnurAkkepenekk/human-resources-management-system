@@ -3,6 +3,7 @@ package kodlamaio.hrms.business.concretes;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kodlamaio.hrms.business.abstracts.WorkTimeTypeService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
@@ -21,6 +22,7 @@ public class WorkTimeTypeManager implements WorkTimeTypeService {
 
 
 	@Override
+	@Transactional
 	public Result add(WorkTimeType workTimeType) {
 		this.workTimeTypeDao.save(workTimeType);
 		return new SuccessResult("Added successfully");

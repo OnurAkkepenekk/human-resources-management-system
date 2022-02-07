@@ -3,6 +3,7 @@ package kodlamaio.hrms.business.concretes;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kodlamaio.hrms.business.abstracts.WorkTypeService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
@@ -20,6 +21,7 @@ public class WorkTypeManager implements WorkTypeService {
 	private final WorkTypeDao workTypeDao;
 
 	@Override
+	@Transactional
 	public Result add(WorkType workType) {
 		this.workTypeDao.save(workType);
 		return new SuccessResult("Added succesfully");
