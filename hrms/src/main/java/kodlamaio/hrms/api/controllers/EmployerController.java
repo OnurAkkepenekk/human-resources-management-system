@@ -2,6 +2,8 @@ package kodlamaio.hrms.api.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -39,12 +41,12 @@ public class EmployerController {
 	}
 
 	@PostMapping("/add")
-	public Result add(@RequestBody Employer employer) {
+	public Result add(@Valid @RequestBody Employer employer) {
 		return this.employerService.add(employer);
 	}
 
 	@PutMapping("/update")
-	public DataResult<Employer> update(@RequestBody Employer employer) {
+	public DataResult<Employer> update(@Valid @RequestBody Employer employer) {
 		return this.employerService.update(employer);
 	}
 }

@@ -39,14 +39,14 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
 	}
 	
 	@ExceptionHandler(CityAlreadyExists.class)
-	public ResponseEntity<?> cityAlreadyExists(EmailAlreadyExists e) {
+	public ResponseEntity<?> cityAlreadyExists(CityAlreadyExists e) {
 		Map<String, String> errors = new HashMap<>();
 		errors.put("error", e.getMessage());
 		log.error(e.getMessage(), e);
 		return new ResponseEntity<>(errors, HttpStatus.CONFLICT);
 	}
 	@ExceptionHandler(NotFoundException.class)
-	public ResponseEntity<?> notFoundException(EmailAlreadyExists e) {
+	public ResponseEntity<?> notFoundException(NotFoundException e) {
 		Map<String, String> errors = new HashMap<>();
 		errors.put("error", e.getMessage());
 		log.error(e.getMessage(), e);

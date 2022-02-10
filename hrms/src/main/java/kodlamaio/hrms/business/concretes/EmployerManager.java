@@ -12,6 +12,7 @@ import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.EmployerDao;
 import kodlamaio.hrms.entities.concretes.Employer;
+import kodlamaio.hrms.exception.EmailAlreadyExists;
 import kodlamaio.hrms.exception.NotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -36,6 +37,9 @@ public class EmployerManager implements EmployerService {
 	@Override
 	@Transactional
 	public Result add(Employer employer) {
+		if (employerDao.existsByEmail(employer.getEmail())) {
+			throw new EmailAlreadyExists("Email already exists");
+		}
 		log.info("Employer added");
 		this.employerDao.save(employer);
 		return new SuccessResult("Employer added.");
@@ -49,7 +53,7 @@ public class EmployerManager implements EmployerService {
 	@Override
 	@Transactional
 	public DataResult<Employer> update(Employer employer) {
-		if(employerDao.existsById(employer.getId())) {
+		if (employerDao.existsById(employer.getId())) {
 			return new SuccessDataResult<Employer>(this.employerDao.save(employer));
 		}
 		throw new NotFoundException("There is no employer with this ID");
