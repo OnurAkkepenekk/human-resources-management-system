@@ -50,6 +50,9 @@ public class JobAdvertisement {
 	@Column(name = "is_active", nullable = false)
 	private boolean isActive;
 
+	@Column(name = "click_count")
+	private int clickCount;
+
 	@ManyToOne()
 	@JoinColumn(name = "city_id")
 	private City city;

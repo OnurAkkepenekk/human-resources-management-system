@@ -56,6 +56,7 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 			jobAdvertisementDto.setLastApplyDate(advertisement.getLastApplyDate());
 			jobAdvertisementDto.setPublishDate(advertisement.getPublishDate());
 			jobAdvertisementDto.setWebAddress(advertisement.getEmployer().getWebAddress());
+			jobAdvertisementDto.setClickCount(advertisement.getClickCount());
 			jobAdvertisementDtoList.add(jobAdvertisementDto);
 		}
 		return new SuccessDataResult<List<JobAdvertisementDto>>(jobAdvertisementDtoList);
@@ -78,8 +79,8 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 		JobAdvertisement jobAdvertisementToUpdate = this.jobAdvertDao.findByIdAndEmployer_Id(jobadvertisementId,
 				employerId);
 		if (jobAdvertisementToUpdate == null)
-			return new ErrorDataResult<JobAdvertisement>(
-					"Job advertisements were not found to match the criteria. No such job posting for this job posting does not belong to this company.");
+			return new ErrorDataResult<JobAdvertisement>("Job advertisements were not found to match the criteria. "
+					+ "No such job posting for this job posting does not belong to this company.");
 		jobAdvertisementToUpdate.setActive(!jobAdvertisementToUpdate.isActive());
 		this.jobAdvertDao.save(jobAdvertisementToUpdate);
 		return new SuccessDataResult<JobAdvertisement>("The specified job advertisement has been "
@@ -106,6 +107,7 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 			jobAdvertisementDto.setWorkTypeName(advertisement.getWorkType().getWorkTypeName());
 			jobAdvertisementDto.setPublishDate(advertisement.getPublishDate());
 			jobAdvertisementDto.setLastApplyDate(advertisement.getLastApplyDate());
+			jobAdvertisementDto.setClickCount(advertisement.getClickCount());
 			log.info(String.format("Job Posting number %d found!", id));
 			return new SuccessDataResult<JobAdvertisementDto>(jobAdvertisementDto);
 		}
@@ -117,6 +119,14 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 			int workTypeId, String orderBy, String orderDirection) {
 
 		return new SuccessDataResult<List<JobAdvertisementDto>>(
-				this.jobAdvertDao.searchJobAdvertisement(cityId, jobId, workTimeTypeId, workTypeId), "Merhaba");
+				this.jobAdvertDao.searchJobAdvertisement(cityId, jobId, workTimeTypeId, workTypeId), "Searched");
+	}
+
+	@Override
+	public Result increaseClickCount(int id) {
+		JobAdvertisement advertisement = jobAdvertDao.findById(id);
+		advertisement.setClickCount(advertisement.getClickCount() + 1);
+		jobAdvertDao.save(advertisement);
+		return new SuccessResult("Increased the number of clicks");
 	}
 }

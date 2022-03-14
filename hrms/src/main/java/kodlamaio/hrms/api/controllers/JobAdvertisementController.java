@@ -44,6 +44,11 @@ public class JobAdvertisementController {
 		return this.advertisementService.finfByIsActiveTrueAndEmployer_Id(employer_Id);
 	}
 
+	@PostMapping("/increaseClickCount")
+	public Result IncreaseClickCount(int id) {
+		return this.advertisementService.increaseClickCount(id);
+	}
+
 	@GetMapping("/changeStatus")
 	public DataResult<JobAdvertisement> changeStatus(int advertisementId, int employer_Id) {
 		return this.advertisementService.findByIdAndEmployer_Id(advertisementId, employer_Id);
@@ -60,7 +65,8 @@ public class JobAdvertisementController {
 			@RequestParam(name = "orderByField", defaultValue = "id") String orderBy,
 			@RequestParam(name = "orderDirection", defaultValue = "asc") String orderDirection) {
 
-		return this.advertisementService.searchJobAdvertisement(cityId,jobId,workTimeTypeId,workTypeId,orderBy,orderDirection);
+		return this.advertisementService.searchJobAdvertisement(cityId, jobId, workTimeTypeId, workTypeId, orderBy,
+				orderDirection);
 
 	}
 }
