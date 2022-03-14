@@ -27,4 +27,5 @@ public class JobAdvertisementDto {
 	private Date publishDate;
 	private Date lastApplyDate;
 	private String webAddress;
+	private int clickCount;
 }

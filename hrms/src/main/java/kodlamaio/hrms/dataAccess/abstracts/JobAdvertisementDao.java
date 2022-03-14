@@ -21,7 +21,7 @@ public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement, Int
 	@Query("Select new kodlamaio.hrms.entities.dtos.JobAdvertisementDto"
 			+ "(ja.id, e.id, ja.jobDescription, ja.minSalary, ja.maxSalary, ja.openPositionCount, ja.city.cityName,"
 			+ " ja.jobPosition.jobTitle, ja.workTimeType.workTimeTypeName, ja.workType.workTypeName, e.companyName, "
-			+ " ja.isActive, ja.publishDate, ja.lastApplyDate, e.webAddress)"
+			+ " ja.isActive, ja.publishDate, ja.lastApplyDate, e.webAddress, ja.clickCount)"
 			+ " From JobAdvertisement ja Inner Join ja.employer e "
 			+ "Where ja.city.id =?1 AND ja.jobPosition.id =?2 "
 			+ "AND ja.workTimeType.workTimeTypeId =?3 AND ja.workType.workTypeId=?4 ")
