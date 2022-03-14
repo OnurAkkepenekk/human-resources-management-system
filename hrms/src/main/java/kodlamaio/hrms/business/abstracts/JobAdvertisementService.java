@@ -13,6 +13,8 @@ public interface JobAdvertisementService {
 
 	DataResult<List<JobAdvertisementDto>> getAll();
 
+	Result increaseClickCount(int id);
+
 	DataResult<List<JobAdvertisement>> findByIsActiveTrueOrderByCreateDate();
 
 	DataResult<List<JobAdvertisement>> finfByIsActiveTrueAndEmployer_Id(int employerId);
