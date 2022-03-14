@@ -3,6 +3,8 @@ package kodlamaio.hrms;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -19,20 +21,23 @@ public class HrmsApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(HrmsApplication.class, args);
 	}
-	
+
 	@Bean
-    public Docket api() { 
-        return new Docket(DocumentationType.SWAGGER_2)
-        		.apiInfo(apiEndPointsInfo())
-        		.select()                                  
-        		.apis(RequestHandlerSelectors.basePackage("kodlamaio.hrms"))                                     
-        		.build();                                           
-    }
-	   private ApiInfo apiEndPointsInfo() {
-	        return new ApiInfoBuilder().title("Human Resources Management System REST API Layer")
-	                .description("Human Resources Management")
-	                .contact(new Contact("Onur Akkepenek", "https://github.com/OnurAkkepenekk", "onurakkepenek@outlook.com"))
-	                .version("1.0")
-	                .build();
-	    }
+	PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+
+	@Bean
+	public Docket api() {
+		return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiEndPointsInfo()).select()
+				.apis(RequestHandlerSelectors.basePackage("kodlamaio.hrms")).build();
+	}
+
+	private ApiInfo apiEndPointsInfo() {
+		return new ApiInfoBuilder().title("Human Resources Management System REST API Layer")
+				.description("Human Resources Management")
+				.contact(
+						new Contact("Onur Akkepenek", "https://github.com/OnurAkkepenekk", "onurakkepenek@outlook.com"))
+				.version("1.0").build();
+	}
 }
